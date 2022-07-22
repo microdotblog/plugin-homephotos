@@ -1,0 +1,8 @@
+{
+	"version": "1.0",
+	"title": "Photo blog",
+	"description": "Change your home page to a grid of photos.",
+	"includes": [
+		"/js/masonry.min.js"
+	]
+}
