@@ -1,0 +1,72 @@
+<html>
+<head>
+<style>
+.flex-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.flex-left {
+	display: flex;
+	width: 25%;
+	height: 100vh;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+}
+
+.flex-right {
+	width: 75%;
+	height: 100vh;
+}
+
+.title {
+	font-weight: strong;
+	font-size: 20px;
+	padding-bottom: 20px;
+}
+
+.description {
+}
+
+.me {
+	/* text-align: center; */
+	padding-bottom: 100px;
+}
+
+.me img {
+	border-radius: 50px;
+	margin-bottom: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="flex-container">
+	<div class="flex-left">
+		<div class="me">
+			<img src="{{ .Site.Author.avatar }}" width="100" height="100">
+			<div class="title">
+				{{ .Site.Title }}
+			</div>
+			<div class="description">
+				{{ .Site.Params.description | safeHTML }}
+			</div>
+		</div>
+	</div>
+	<div class="flex-right">
+
+		{{- $list := where .Site.Pages ".Params.photos" "!=" nil -}}
+		{{ range first 30 $list }}
+			<a href="{{ .Permalink }}">
+			{{ range first 1 .Params.photos }}
+				<img src="{{ . }}" width="300" height="300" loading="lazy">
+			{{ end }}
+			</a>
+		{{ end }}
+
+	</div>
+</div>
+
+</body>
+</html>
