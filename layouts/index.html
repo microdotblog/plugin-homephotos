@@ -1,5 +1,6 @@
 <html>
 <head>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <style>
 .flex-container {
 	display: flex;
@@ -38,6 +39,10 @@
 	border-radius: 50px;
 	margin-bottom: 20px;
 }
+
+.grid-item {
+	margin-bottom: 5px;
+}
 </style>
 </head>
 <body>
@@ -56,17 +61,31 @@
 	</div>
 	<div class="flex-right">
 
-		{{- $list := where .Site.Pages ".Params.photos" "!=" nil -}}
+<div class="grid">
+
+		{{- $list := where .Site.Pages ".Params.photos_with_metadata" "!=" nil -}}
 		{{ range first 30 $list }}
+<div class="grid-item">
 			<a href="{{ .Permalink }}">
-			{{ range first 1 .Params.photos }}
-				<img src="{{ . }}" width="300" height="300" loading="lazy">
-			{{ end }}
+				{{ range first 1 .Params.photos_with_metadata }}
+					<img src="{{ .url }}" width="{{ .width }}" height="{{ .height }}" loading="lazy">
+				{{ end }}
 			</a>
+</div>
 		{{ end }}
+
+</div>
 
 	</div>
 </div>
+
+<script>
+var msnry = new Masonry(".grid", {
+	itemSelector: ".grid-item",
+	columnWidth: 150,
+	gutter: 2
+});
+</script>
 
 </body>
 </html>
