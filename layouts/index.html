@@ -115,14 +115,14 @@ color: #6f6f6f;
 			</div>
 
 				<nav>
-	{{ range .Site.Menus.main }}
-		{{ if .Page.Params.redirect_url }}
-			<a href="{{ .Page.Params.redirect_url }}">{{ .Name }}</a>
-		{{ else }}
-			<a href="{{ .URL | relLangURL | safeURL }}">{{ .Name }}</a>
-		{{ end }}
-	{{ end }}
-</nav>
+					{{ range .Site.Menus.main }}
+						{{ if .Page.Params.redirect_url }}
+							<a href="{{ .Page.Params.redirect_url }}">{{ .Name }}</a>
+						{{ else }}
+							<a href="{{ .URL | relLangURL | safeURL }}">{{ .Name }}</a>
+						{{ end }}
+					{{ end }}
+				</nav>
 
 			<div class="description">
 				{{ .Site.Params.description | safeHTML }}
