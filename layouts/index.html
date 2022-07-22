@@ -2,6 +2,10 @@
 <head>
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <style>
+body {
+font-family: sans-serif;
+}
+
 .flex-container {
 	display: flex;
 	flex-direction: row;
@@ -27,9 +31,6 @@
 	padding-bottom: 20px;
 }
 
-.description {
-}
-
 .me {
 	/* text-align: center; */
 	padding-bottom: 100px;
@@ -40,8 +41,27 @@
 	margin-bottom: 20px;
 }
 
+nav {
+}
+
+nav a {
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.description {
+  padding-top: 20px;
+color: #6f6f6f;
+}
+
+.description a {
+  color: #6f6f6f;
+ text-decoration: none;
+}
+
 .grid-item {
-	margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 </style>
 </head>
@@ -54,6 +74,17 @@
 			<div class="title">
 				{{ .Site.Title }}
 			</div>
+
+				<nav>
+	{{ range .Site.Menus.main }}
+		{{ if .Page.Params.redirect_url }}
+			<a href="{{ .Page.Params.redirect_url }}">{{ .Name }}</a>
+		{{ else }}
+			<a href="{{ .URL | relLangURL | safeURL }}">{{ .Name }}</a>
+		{{ end }}
+	{{ end }}
+</nav>
+
 			<div class="description">
 				{{ .Site.Params.description | safeHTML }}
 			</div>
@@ -67,9 +98,9 @@
 		{{ range first 30 $list }}
 <div class="grid-item">
 			<a href="{{ .Permalink }}">
-				{{ range first 1 .Params.photos_with_metadata }}
-					<img src="{{ .url }}" width="{{ .width }}" height="{{ .height }}" loading="lazy">
-				{{ end }}
+			{{ range first 1 .Params.photos_with_metadata }}
+				<img src="{{ .url }}" width="{{ .width }}" height="{{ .height }}" loading="lazy">
+			{{ end }}
 			</a>
 </div>
 		{{ end }}
@@ -80,10 +111,10 @@
 </div>
 
 <script>
-var msnry = new Masonry(".grid", {
-	itemSelector: ".grid-item",
-	columnWidth: 150,
-	gutter: 2
+var msnry = new Masonry( '.grid', {
+  itemSelector: '.grid-item',
+  columnWidth: 150,
+  gutter: 2
 });
 </script>
 
