@@ -1,1 +1,3 @@
-# plugin-photoblog
+# Home page photos
+
+![screenshot](screenshot.png)
