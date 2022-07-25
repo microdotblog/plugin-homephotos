@@ -59,7 +59,39 @@ color: #6f6f6f;
 .grid-item {
   margin-bottom: 2px;
 }
-	
+
+@media only screen and (max-width: 600px) {
+
+	.flex-container {
+		display: block;
+	}
+
+	.flex-left {
+		width: 100%;
+		justify-content: center;
+	}
+
+	.flex-right {
+		width: 100%;
+	}
+
+	.me {
+		padding-bottom: 20px;
+	}
+
+	.me img {
+		width: 50px;
+		height: 50px;
+		border-radius: 25px;
+		margin-bottom: 20px;
+	}
+
+	nav a {
+		display: inline-block;
+	}
+
+}
+
 @media (prefers-color-scheme: dark) {
 
 	body {
