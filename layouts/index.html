@@ -75,8 +75,8 @@
 				<div class="grid-item">
 					<a href="{{ .Permalink }}">
 					{{ range first 1 .Params.photos_with_metadata }}
-						{{- $smaller_width := cond (ge .width 600) (div .width 2) .width -}}
-						{{- $smaller_height := cond (ge .height 600) (div .height 2) .height -}}
+						{{- $smaller_width := cond (ge .width 600) (div (mul .width 2) 3) .width -}}
+						{{- $smaller_height := cond (ge .height 600) (div (mul .height 2) 3) .height -}}
 						<img src="{{ .url }}" width="{{ $smaller_width }}" height="{{ $smaller_height }}" loading="lazy">
 					{{ end }}
 					</a>
